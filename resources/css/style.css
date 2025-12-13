@@ -1,0 +1,245 @@
+/* Reset & Box-sizing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Main content */
+.main-content {
+    flex: 1;
+    padding: 80px 30px 30px 30px;
+    margin-left: 250px;
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 0;
+    z-index: 9999;
+    background-color: #124b28; /* Hijau utama */
+    transition: all 0.3s ease;
+}
+
+.navbar.scrolled {
+    background-color: #0f5731 !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.navbar-nav .nav-link {
+    position: relative;
+    color: #fff;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    left: 0;
+    bottom: -5px;
+    background-color: #c9e8d3; /* hijau terang untuk underline */
+    transition: width 0.3s;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #c9e8d3;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #f0f4f0;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 10;
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #124b28; /* hijau utama */
+    margin-bottom: 30px;
+}
+
+.sidebar ul li a {
+    display: block;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: all 0.3s;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: #124b28;
+    color: #fff;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(18, 75, 40, 0.6), rgba(18, 75, 40, 0.6)),
+        url("https://cdn-1.timesmedia.co.id/images/2024/11/19/MAN-1-Kota-Malang.jpg");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #c9e8d3;
+}
+
+/* Section Titles */
+.section-title {
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #124b28;
+    border-left: 5px solid #124b28;
+    padding-left: 10px;
+}
+
+/* Testimonial Card */
+.testimonial-card {
+    background: #f0f9f0;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-card img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+/* Form Section */
+.form-section {
+    background-color: #e0f4e0;
+    padding: 40px 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+.kategori-form input:focus {
+    border-color: #124b28;
+    outline: none;
+}
+
+/* Buttons */
+button,
+.btn-primary,
+.btn-secondary,
+.btn-danger {
+    cursor: pointer;
+    font-size: 15px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    transition: background 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #124b28;
+    color: #fff;
+}
+.btn-primary:hover {
+    background-color: #0f5731;
+}
+.btn-secondary {
+    background-color: #1e6a3a;
+    color: #fff;
+}
+.btn-secondary:hover {
+    background-color: #155026;
+}
+.btn-danger {
+    background-color: #8b1a1a;
+    color: #fff;
+}
+.btn-danger:hover {
+    background-color: #5e1010;
+}
+
+/* Footer Modern */
+.footer {
+    background: linear-gradient(135deg, #124b28, #0f5731);
+    color: #fff;
+    padding: 50px 20px 20px;
+}
+
+.footer-left p,
+.footer-center h5,
+.footer-right h5,
+.footer-bottom {
+    color: #c9e8d3;
+}
+
+/* Images Uniform */
+.img-uniform {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+        transform: translateX(-200px);
+    }
+    .sidebar.active {
+        transform: translateX(0);
+    }
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+    .nav-links {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .social-icons a {
+        margin-right: 10px;
+    }
+}
