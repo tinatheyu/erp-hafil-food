@@ -18,3 +18,6 @@ Route::get('/bom-overview', function () {
     return view('pages.bom-overview');
 })->name('bom-overview');
 
+Route::get('/manufacturing-orders', function () {
+    return view('pages.manufacturing-orders');
+})->name('manufacturing-orders');

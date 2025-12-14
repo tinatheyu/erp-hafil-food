@@ -29,8 +29,8 @@
                                             stroke-width="2" d="m1 9 4-4-4-4" />
                                     </svg>
                                     <a href="#"
-                                        class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Bill
-                                        of Material</a>
+                                        class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">Manufacturing
+                                        Orders</a>
                                 </div>
                             </li>
                             <li aria-current="page">
@@ -40,24 +40,63 @@
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m1 9 4-4-4-4" />
                                     </svg>
-                                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Add Bill
-                                        of Material</span>
+                                    <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2 dark:text-gray-400">Add
+                                        Manufacturing Order</span>
                                 </div>
                             </li>
                         </ol>
                     </nav>
                 </section>
 
+                <!-- progress-bar -->
+                <div>
+                    <nav aria-label="Progress">
+                        <ol class="flex justify-between text-sm">
+                            <li class="flex flex-col items-center flex-1">
+                                <div class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-blue-600">
+                                    <span class="w-3 h-3 bg-blue-600 rounded-full"></span>
+                                </div>
 
-                <!-- Header Title -->
-                <section class="max-w-screen-7xl mx-auto mb-8">
-                    <h1 class="text-3xl font-bold text-gray-900"> Add Bill of Material</h1>
-                </section>
+                                <span class="mt-2 font-medium text-blue-600">
+                                    Draft
+                                </span>
+                            </li>
 
-                <!-- <hr class="my-8 border-gray-200"> -->
+
+
+                            <li class="flex flex-col items-center flex-1">
+                                <div class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-gray-200">
+                                    <span class="w-3 h-3 bg-gray-200 rounded-full"></span>
+                                </div>
+                                <span class="mt-2 font-medium text-gray-200">Confirmed</span>
+                            </li>
+
+
+                            <li class="flex flex-col items-center flex-1">
+                                <div class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-gray-200">
+                                    <span class="w-3 h-3 bg-gray-200 rounded-full"></span>
+                                </div>
+                                <span class="mt-2 font-medium text-gray-400">Check Availability</span>
+                            </li>
+
+                            <li class="flex flex-col items-center flex-1">
+                                <div class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-gray-200">
+                                    <span class="w-3 h-3 bg-gray-200 rounded-full"></span>
+                                </div>
+                                <span class="mt-2 font-medium text-gray-400">In Progress</span>
+                            </li>
+                            <li class="flex flex-col items-center flex-1">
+                                <div class="w-8 h-8 flex items-center justify-center rounded-full border-2 border-gray-200">
+                                    <span class="w-3 h-3 bg-gray-200 rounded-full"></span>
+                                </div>
+                                <span class="mt-2 font-medium text-gray-400">Done</span>
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
 
                 <!-- Grid Form -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
                     <!-- Product Type -->
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">
@@ -74,9 +113,9 @@
                     <!-- Barcode -->
                     <div>
                         <label class="block mb-2 text-sm font-medium text-gray-700">
-                            Refrence
+                            Bill of Material
                         </label>
-                        <input type="text" placeholder="Reference Number"
+                        <input type="text" placeholder="Bill of Material Number"
                             class="w-full rounded-lg border border-gray-300 p-2.5 focus:ring-blue-500 focus:border-blue-500">
                     </div>
 
@@ -90,27 +129,15 @@
                     </div>
 
                 </div>
-                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                    <div>
-                        <p class="text-xl font-bold text-heading">Component</p>
-                        <p class="text-base text-heading text-gray-300">Attach material component on your product</p>
-                    </div>
-
-                    <button type="button" @click="$store.openAddModal()"
-                        class="capitalize w-full sm:w-fit inline-flex gap-1 items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 bg-secondary-300 rounded-md hover:bg-secondary-500 focus:ring-2 focus:ring-offset-2 focus:ring-secondary-300 focus:shadow-outline focus:outline-none border">
-                        <x-heroicon-s-plus class="w-5 h-5" />
-                        Component
-                    </button>
-                </div>
-
+                <!-- Table -->
                 <section class="">
                     <div class="relative overflow-x-auto">
                         <table
                             class="w-full text-sm text-left text-gray-700 border border-blue-100 rounded-lg overflow-hidden">
-                            <thead class="text-xs uppercase bg-blue-50 text-blue-700">
+                            <thead class="text-m bg-blue-50 text-blue-700">
                                 <tr>
-                                    <th class="px-6 py-3">Component</th>
-                                    <th class="px-6 py-3">Quantity</th>
+                                    <th class="px-6 py-3">Product</th>
+                                    <th class="px-6 py-3">To Consume</th>
                                     <th class="px-6 py-3 text-right">Action</th>
                                 </tr>
                             </thead>
@@ -140,13 +167,23 @@
                     </div>
                 </section>
 
-                <!-- Submit -->
-                <div class="mt-8">
+                <!-- button-->
+                <div class="flex items-center gap-4 mt-8">
                     <button type="submit"
-                        class="inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300">
-                        Submit
+                        class="inline-flex items-center px-6 py-3 text-sm font-medium text-white
+               bg-blue-600 rounded-lg hover:bg-blue-700
+               focus:ring-4 focus:ring-blue-300">
+                        Save to Draft
+                    </button>
+
+                    <button type="button"
+                        class="inline-flex items-center px-6 py-3 text-sm font-medium text-blue-600
+               border border-blue-600 rounded-lg hover:bg-blue-50
+               focus:ring-4 focus:ring-blue-300">
+                        Cancel to Order
                     </button>
                 </div>
+
             </form>
         </section>
     </div>

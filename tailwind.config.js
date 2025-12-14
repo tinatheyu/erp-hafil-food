@@ -3,7 +3,12 @@ const colors = require("tailwindcss/colors");
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
-  content: ["./app/**/{**,.client,.server}/**/*.{js,jsx,ts,tsx}"],
+  content: [
+    "./resources/**/*.blade.php",
+    "./resources/**/*.js",
+    "./resources/**/*.vue",
+    "./app/**/*.php",
+  ],
   theme: {
     extend: {
       keyframes: {
