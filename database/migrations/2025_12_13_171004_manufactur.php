@@ -16,7 +16,6 @@ return new class extends Migration
             $table->integer('kuantitas');
             $table->integer('cost');
             $table->foreignId('product');
-
         });
     }
 
