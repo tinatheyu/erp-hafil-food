@@ -5,50 +5,37 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Purchase;
+use Illuminate\Support\Facades\DB;
+use App\Models\PurchaseItem;
 class PurchaseController extends Controller
 {
     //
-    public function store(Request $request) {
-    $data = $request->validate([
-        'supplier_id' => 'required|exists:suppliers,id',
-        'employee_id' => 'required|exists:employees,id',
-        'purchase_date' => 'required|date',
-        'items' => 'required|array',
-        'items.*.product_id' => 'required|exists:products,id',
-        'items.*.qty' => 'required|integer|min:1',
-        'items.*.price' => 'required|numeric|min:0'
-    ]);
-
-    return DB::transaction(function () use ($data) {
-        $purchase = Purchase::create([
-            'supplier_id' => $data['supplier_id'],
-            'employee_id' => $data['employee_id'],
-            'purchase_date' => $data['purchase_date']
+   public function store(Request $request)
+    {
+        $data = $request->validate([
+            'employee_id'   => 'required|exists:employees,id',
+            'product_id'    => 'required|exists:products,id',
+            'purchase_date' => 'required|date',
+            'qty'           => 'required|integer|min:1',
+            'price'         => 'required|numeric|min:0'
         ]);
 
-        $total = 0;
+        $total = $data['qty'] * $data['price'];
 
-        foreach ($data['items'] as $item) {
-            $subtotal = $item['qty'] * $item['price'];
-            $total += $subtotal;
+        $purchase = Purchase::create([
+            'employee_id'   => $data['employee_id'],
+            'product_id'    => $data['product_id'],
+            'purchase_date' => $data['purchase_date'],
+            'qty'           => $data['qty'],
+            'price'         => $data['price'],
+            'total'         => $total
+        ]);
 
-            PurchaseItem::create([
-                'purchase_id' => $purchase->id,
-                'product_id' => $item['product_id'],
-                'qty' => $item['qty'],
-                'price' => $item['price'],
-                'subtotal' => $subtotal
-            ]);
-        }
+        return response()->json($purchase, 201);
+    }
 
-        $purchase->update(['total' => $total]);
-
-        return $purchase->load('items');
-    });
-}
-
-public function show($id) {
-    return Purchase::with('items')->findOrFail($id);
-}
-
+    public function show($id)
+    {
+        return Purchase::findOrFail($id);
+    }
 }
